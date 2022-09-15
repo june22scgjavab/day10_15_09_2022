@@ -1,0 +1,105 @@
+Computer is having a CPU. HAS-A relationship
+
+
+public class Customer{
+private String customerName;==> Customer is having a name  
+}
+
+
+Can we design a class for Computer and CPU?
+
+public class Computer {
+private int ram;
+private String model;
+private String os;
+}
+
+
+public class CPU{
+private int processorSpeed;
+private int clockSpeed;
+
+}
+
+Computer computer=new CPU();  // Do they have parent child relationship.
+
+
+------------------------------------------------------------------------------------------------------
+Computer has a CPU.
+
+
+public class CPU{
+private int processorSpeed;
+private int clockSpeed;
+//setter/getter
+}
+
+
+public class Computer {
+private int ram;
+private String model;
+private String os;
+private CPU cpu;  // Computer has a cpu
+setters/getters
+}
+
+public class Charger {
+private String chargerType;
+
+}
+
+
+public class Laptop extends Computer // Laptop IS-A computer
+{
+   private Charger charger;  Laptop HAS-A charger/instance variable
+   //private KeypadGuard kg;  //Laptop HAS-A keypadGuard
+
+    public void protectKeyboard(KeypadGaurd  kg)  // Laptop USES keypadGuard
+     {
+
+     }   
+
+     public void paint() {}
+     
+
+}
+
+// 
+--------------------------------------------------------------------------------------------------------------------------------------
+Employee reading a book from a library. Employee is working in a project. Employee is a Person . Employee is having a name....
+Name further is having firstName, middlname,LastName. Book is having title and authorName.
+
+public class Person {}
+public class Employee{}
+public class Book {}
+public class Name {}
+public class Library {}
+public class Project {}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+public class Person {
+  private Name name;
+}
+public class Project {}
+public class Name    {}
+public class Employee extends Person{
+  //private Project project;    // Employee has a project
+  public void issues(Book book){
+
+
+  }
+  public void worksOn(Project proj)  // Employee works on a project in that case we are not going to project as an instance variable
+  {
+
+  }  
+
+}
+public class Library {
+  private Book books[];
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+

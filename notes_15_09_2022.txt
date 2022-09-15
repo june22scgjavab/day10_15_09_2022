@@ -1,0 +1,124 @@
+*Keywords
+*Variables
+*Identifiers
+*Data Types
+*Coding Standards
+*Operators
+*Type Conversion
+*Control Structures
+*Class and object
+*methods
+*constructors
+*this keyword
+*memory management
+*Encapsulation
+*Abstraction
+*Access modifiers
+*Class Diagram
+*String
+*Array
+*Debugging
+*static
+*aggregation
+*association
+*inheritence
+*polymorphism
+*Object and Wrapper Classes
+*final keyword
+*Abstract
+*Interface
+*Exception
+*Package
+----------------------------------------------------------------------------------------------------------------------------------------------
+package com;
+
+class Hello {
+
+}
+/* With the class Hello we are not using any access modifier so the access modifier for the class is default or package specific which mean
+we wont be able to access this class outside the package com.
+
+package comone;
+
+import com.Hello;
+
+public class HelloMain {
+
+	public static void main(String[] args) {
+	Hello hello=new Hello();  // We get a compilation error as Hello is having the default access modifier
+
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------
+
+package com;
+
+public class Hello {
+
+}
+
+/* If we are using public access modifier with the the class , the class is accessible outside the package.
+
+package comone;
+
+import com.Hello;
+
+public class HelloMain {
+
+	public static void main(String[] args) {
+	Hello hello=new Hello();  // No compilation error
+	}
+
+}
+/* The above  code will compile as this time Hello class which is in different package from HelloMain is having the public access modifier. */
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com;
+
+
+class Hello {
+
+}
+
+
+package com;
+
+public class HelloMain {
+public static void main(String[] args) {
+	Hello hello=new Hello();
+}
+}
+/* Though we declared Hello with default access modifer, it is accessible by HelloMain because both Hello and HelloMain are in the same package. 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com;
+
+
+ class Hello {
+private class Hi{
+	
+}
+}
+
+/* Inner class can be private or protected or default or public. */
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+package com;
+
+// Illegal modifier for the class Hello; 
+//only public, abstract & final are permitted or no access modifier
+// Which means default
+// We cannot use private or protected
+// But for inner class we can have all the access modifiers
+// and inner class can be static, final also
+class Hello {
+
+}
+
+Therefore, it is a good practice to use packages.
+
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+

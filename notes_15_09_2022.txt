@@ -121,4 +121,182 @@ Therefore, it is a good practice to use packages.
  
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+Protected===> ( inherited class access) 
+Variables, methods and constructors which are declared protected in the parent class can be accessed only by the sub classes in other packages or any class within the same package.
 
+The protected access modifier cannot be applied to classes and interfaces.
+
+Protected access modifier allows the child classes present in different packages to use the protected method or variable of the parent class while preventing other classes of the different package from doing so.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.pack1;
+
+public class A {
+private int i;
+int j;
+protected int k;
+public int l;
+
+public void display() {
+	System.out.println(i);
+	System.out.println(j);
+	System.out.println(k);
+	System.out.println(l);
+}
+}
+[ All the members with private,default,protected and public are accessible in the same class. ]
+----------------------------------------------------------------------------------------------------------------------------------------------
+package com.pack1;
+/*
+ * Only private member is not accessible by the class 
+ * which is in the same package and non-derived class
+ */
+public class B {
+
+	public void display()
+	{
+		A a=new A();
+		//System.out.println(a.i); // i is a private member of class
+		// A so it is not accessible from the class B
+	    System.out.println(a.j); // j is a default/package specific member of
+	    // class A so it is accessible from class B after creating
+	    // an object class A
+	    System.out.println(a.k); // protected members are also 
+	    // accessible by the non-derived class , if the class in the 
+	    // same package
+	    System.out.println(a.l); // public members are accessible for 
+	    // class A to class B
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.pack1;
+
+public class C extends A {
+
+	public void display()
+	{
+		//System.out.println(i); // The private members of the Parent class A
+		// is not accessible by the subclass C
+		System.out.println(j); // as A and C are in same package so 
+		// j is accessible as the default members accessibility is 
+		// restricted within the same package
+		System.out.println(k); // k is a protected member so can be
+		// inherited and accessed by the subclass in the same package
+		System.out.println(l);// as l is public so it is accessible
+		// from class A to C
+	}
+}
+/* Derived class same package cannot access or inherit private members */
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.pack2;
+
+import com.pack1.A;
+
+public class D {
+public void display() {
+	A a=new A();
+	//System.out.println(a.i); private member of class A is not accessible
+	//System.out.println(a.j); j is not accessible because D is in 
+	// different package as that of A
+	//System.out.println(a.k); non derived class and in different package
+	// wont be able to access the protected member
+	System.out.println(a.l);
+	// So public member will be accessible from D which is a non-derived
+	// class different package
+}
+}
+
+/* If it is non-derived class different package, it is able to access only the public member */
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+package com.pack2;
+
+import com.pack1.A;
+
+public class E extends A {
+
+	public void display() {
+		//System.out.println(i); // private member is not inherited
+		// by the sub-class in different package
+		//System.out.println(j); The default member is not accessible
+		// by the subclass as the sub class is in different package
+		System.out.println(k); // The protected member is accessible
+		// by the derived class/sub class , different package
+		System.out.println(l); // as l is public it is accessible from
+		// derived class different package
+	}
+}
+
+/* If derived class different package will be able to access the protected and public member/members */
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+private---------------------------------------------->default-------------------------------------------------->protected----------------------------------------------------------------------->public
+(Within the same class)                       (Accessible within the same package)             ( Accessible by the derived classes and non derived class same package)            (Accessible from anywhere)
+    o summarize:
+
+Anything declared as public can be accessed from anywhere
+
+Anything declared as private can be accessed only within that class
+
+If access modifier is not mentioned, an element is accessible to all the classes in the same package
+
+Anything declared as protected can be accessible to all the classes inside the same package and to the sub classes present in a different package     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+IF WE HAVE TO WRITE BOTH PACKAGE AND IMPORT STATEMENTS. PACKAGE SHOULD BE WRITTEN FIRST FOLLOWED BY IMPORT STATEMENT/STATEMENTS.
+
+package mypack;
+
+import java.util.Scanner;
+import java.sql.Connection;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------  
+Object
+ |
+ |
+ |-----Throwable
+          |
+          |---------Error
+          |
+          |
+          |---------Exception
+                      |
+                      |-----SQLException
+                      |-----IOException
+                                |-----EOFException
+                                |-----FileNotFoundException
+                      |
+                      |
+                      |-----RuntimeException
+                                 |--------ArithmeticException
+                                 |--------NullPointerException
+   
+public class Base {}
+public class Derived extends Base {}
+
+ Base base=new Derived();
+
+ Exception ex=new ArithmeticException();
+----------------------------------------------------------------------------------------------------------------------------------------------
+WHEN WE ARE WRITING MULTIPLE CATCH BLOCKS, WE SHOULD WRITE THE SPECIFIC EXCEPTIONS FIRST AND THEN WE SHOULD WRITE THE GENERIC EXCEPTION. BECAUSE IF WE WRITE
+THE GENERIC ONE FIRST( Exception, Throwable) , THEN GENERIC ONE IS HAVING THE CAPABILITY OF HANDLING ALL THE EXCEPTION REST OF THE SPECIFIC EXCEPTIONS BECOME
+UNREACHABLE. UNREACHABLE CODE IS ALWAYS A COMPILATION ERROR.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nested Try Catch Block
+
+//main try block
+try{
+    statement 1;
+    statement 2;
+    //nested try-catch block
+    try{
+        statement 3;
+    }
+    catch(Exception ex){
+        //exception message
+    }
+}
+catch(Exception ex){
+    //exception message
+}
